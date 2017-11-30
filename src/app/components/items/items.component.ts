@@ -9,6 +9,8 @@ import { Item } from '../../models/item'
 })
 export class ItemsComponent implements OnInit {
  items: Item[];
+ editState:boolean=false;
+ itemToEdit :Item;
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
@@ -17,7 +19,20 @@ export class ItemsComponent implements OnInit {
       this.items = items;
     });
   }
-  deleteItem(event,item){
+  deleteItem(event,item:Item){
     this.itemService.deleteItem(item);
+  }
+  editItem(event,item:Item){
+    this.editState = true;
+    this.itemToEdit = item;
+
+  }
+  updateItem(item :Item){
+   this.itemService.updateItem(item);
+   this.clearState();
+  }
+  clearState(){
+    this.editState=false;
+    this.itemToEdit=null;
   }
 }
