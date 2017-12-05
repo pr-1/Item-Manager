@@ -11,6 +11,10 @@ export class ItemsComponent implements OnInit {
  items: Item[];
  editState:boolean=false;
  itemToEdit :Item;
+ itemToShowDetails: Item;
+ itemToHideDetails:Item;
+ showState:boolean =false;
+ hideState : boolean=true;
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
@@ -27,8 +31,24 @@ export class ItemsComponent implements OnInit {
     this.itemToEdit = item;
 
   }
+showDetails(event,item:Item){
+  this.showState = true;
+  this.hideState=false;
+  this.itemToShowDetails = item;
+  this.editState=false;
+  this.itemToEdit=null;
+}
+hideDetails(event,item:Item){
+  this.showState=false;
+  this.hideState=true;
+  this.itemToShowDetails =null;
+  this.editState=false;
+  this.itemToEdit=null;
+}
+
   updateItem(item :Item){
    this.itemService.updateItem(item);
+   this.showState=false;
    this.clearState();
   }
   clearState(){
