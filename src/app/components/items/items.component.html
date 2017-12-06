@@ -1,25 +1,20 @@
-<div *ngIf="items?.length > 0;else noItems">
-    <ul *ngFor="let item of items" class="collection">
+<div *ngIf="items?.length > 0;else noItems"> 
+      <ul *ngFor="let item of items" class="collection">
       <li class="collection-item"><b>Title:</b>{{item.title}} 
       <a href="#" class="secondary-content">
         <div *ngIf="hideState || itemToShowDetails.id != item.id ">
-       
           <i (click)="showDetails($event,item)" class="fa fa-plus-circle"></i>
           <i (click)="deleteItem($event , item)" class="fa fa-trash"></i>
-        
         </div>
         <div *ngIf="showState && itemToShowDetails.id == item.id"> 
         <i (click)="hideDetails($event,item)" class="fa fa-minus-circle"></i>
           <i (click)="editItem($event,item)" class="fa fa-pencil"></i>
           <i *ngIf="editState && itemToEdit.id == item.id" (click)="clearState()" class="fa fa-close"></i>
-        
         </div>
       </a>
         <div *ngIf="showState && itemToShowDetails.id == item.id"> 
           <li class="collection=item"><b>Details:</b>{{item.description}}
-          
           </div>      
-      
       <div *ngIf="editState && itemToEdit.id == item.id">
         <form (ngSubmit)="updateItem(item)" class="col s6">
           <div class="row">
@@ -33,13 +28,11 @@
           </div>
         </form>
       </div>
-      
-      
-      
-      
       </li>
     </ul>
  </div>
+ <!*  Display this if there is no item >
+ 
   <ng-template #noItems>
     <hr>
     <h5>There are no items to list</h5>

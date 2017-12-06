@@ -49,6 +49,7 @@ hideDetails(event,item:Item){
   updateItem(item :Item){
    this.itemService.updateItem(item);
    this.showState=false;
+   this.hideState=true;
    this.clearState();
   }
   clearState(){
